@@ -16,7 +16,9 @@ function daysUntil(date: Date | null): number | null {
 
 export default async function OpportunityDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const opp = await getOpportunityById(parseInt(id, 10));
+  const numId = parseInt(id, 10);
+  if (Number.isNaN(numId)) notFound();
+  const opp = await getOpportunityById(numId);
 
   if (!opp) notFound();
 
@@ -95,7 +97,9 @@ export default async function OpportunityDetailPage({ params }: PageProps) {
             <div className="rounded-xl border border-border bg-card p-6">
               <h3 className="mb-4 font-semibold">관련 링크</h3>
               <div className="space-y-2">
-                {(opp.resourceLinks as string[]).map((link: string, i: number) => (
+                {(opp.resourceLinks as string[])
+                  .filter((link: string) => link.startsWith("http://") || link.startsWith("https://"))
+                  .map((link: string, i: number) => (
                   <a
                     key={i}
                     href={link}

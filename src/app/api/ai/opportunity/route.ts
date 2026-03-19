@@ -9,12 +9,19 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const { opportunityId } = await request.json();
-  if (!opportunityId) {
-    return new Response("opportunityId required", { status: 400 });
+  let body: { opportunityId?: string | number };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response("Invalid JSON", { status: 400 });
   }
 
-  const context = await getOpportunityContext(parseInt(opportunityId, 10));
+  const id = parseInt(String(body.opportunityId), 10);
+  if (Number.isNaN(id) || id <= 0) {
+    return new Response("유효한 공고 ID를 입력해주세요.", { status: 400 });
+  }
+
+  const context = await getOpportunityContext(id);
   if (!context) {
     return new Response("공고를 찾을 수 없습니다.", { status: 404 });
   }

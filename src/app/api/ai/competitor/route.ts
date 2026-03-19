@@ -9,9 +9,16 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const { naicsCode } = await request.json();
-  if (!naicsCode) {
-    return new Response("naicsCode required", { status: 400 });
+  let body: { naicsCode?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response("Invalid JSON", { status: 400 });
+  }
+
+  const { naicsCode } = body;
+  if (!naicsCode || !/^\d{2,6}$/.test(naicsCode)) {
+    return new Response("유효한 NAICS 코드를 입력해주세요 (2~6자리 숫자)", { status: 400 });
   }
 
   const data = await getCompetitorData(naicsCode);

@@ -20,11 +20,12 @@ export async function getOpportunities(filters: OpportunityFilters = {}) {
     status,
     naicsCode,
     page = 1,
-    pageSize = 20,
+    pageSize: rawPageSize = 20,
     sortBy = "postedDate",
     sortOrder = "desc",
   } = filters;
 
+  const pageSize = Math.min(Math.max(1, rawPageSize), 100);
   const conditions = [];
 
   if (search) {
@@ -80,7 +81,21 @@ export async function getOpportunities(filters: OpportunityFilters = {}) {
 
   const [data, [{ total }]] = await Promise.all([
     db
-      .select()
+      .select({
+        id: opportunities.id,
+        noticeId: opportunities.noticeId,
+        title: opportunities.title,
+        department: opportunities.department,
+        office: opportunities.office,
+        type: opportunities.type,
+        naicsCode: opportunities.naicsCode,
+        setAside: opportunities.setAside,
+        postedDate: opportunities.postedDate,
+        responseDeadline: opportunities.responseDeadline,
+        placeCity: opportunities.placeCity,
+        placeCountry: opportunities.placeCountry,
+        status: opportunities.status,
+      })
       .from(opportunities)
       .where(where)
       .orderBy(orderFn(sortColumn))
