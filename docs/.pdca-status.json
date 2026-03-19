@@ -1,0 +1,1153 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-03-19T15:08:52.676Z",
+  "activeFeatures": [
+    "Us-mil",
+    "layout",
+    "(dashboard)",
+    "login",
+    "opportunities",
+    "[id]",
+    "awards",
+    "competitors",
+    "filters",
+    "notifications",
+    "users",
+    "db",
+    "ui",
+    "supabase",
+    "sam-api",
+    "sync-opportunities",
+    "opportunities.ts",
+    "test-sam",
+    "awards.ts",
+    "charts",
+    "admin.ts",
+    "admin",
+    "ai-analysis.ts",
+    "competitor",
+    "opportunity",
+    "ai"
+  ],
+  "primaryFeature": "Us-mil",
+  "features": {
+    "Us-mil": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:54:50.654Z",
+        "lastUpdated": "2026-03-19T14:56:13.761Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/utils.ts"
+    },
+    "layout": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:55:31.422Z",
+        "lastUpdated": "2026-03-19T13:54:22.622Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/layout/sidebar.tsx"
+    },
+    "(dashboard)": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:55:37.524Z",
+        "lastUpdated": "2026-03-19T14:00:43.461Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/page.tsx"
+    },
+    "login": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:56:19.517Z",
+        "lastUpdated": "2026-03-19T13:54:36.314Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(auth)/login/page.tsx"
+    },
+    "opportunities": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:56:57.872Z",
+        "lastUpdated": "2026-03-19T15:02:47.616Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/export/opportunities/route.ts"
+    },
+    "[id]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:57:31.830Z",
+        "lastUpdated": "2026-03-19T15:08:52.676Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/opportunities/[id]/page.tsx"
+    },
+    "awards": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:58:10.539Z",
+        "lastUpdated": "2026-03-19T15:02:55.652Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/export/awards/route.ts"
+    },
+    "competitors": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:58:35.546Z",
+        "lastUpdated": "2026-03-19T15:08:13.512Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/awards/competitors/page.tsx"
+    },
+    "filters": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:59:11.430Z",
+        "lastUpdated": "2026-03-19T12:59:11.430Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/filters/page.tsx"
+    },
+    "notifications": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T12:59:38.361Z",
+        "lastUpdated": "2026-03-19T13:23:22.827Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/notifications/page.tsx"
+    },
+    "users": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:00:09.458Z",
+        "lastUpdated": "2026-03-19T15:01:09.727Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/users/add-user-form.tsx"
+    },
+    "db": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:09:36.710Z",
+        "lastUpdated": "2026-03-19T14:57:50.093Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/db/schema.ts"
+    },
+    "ui": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:18:30.516Z",
+        "lastUpdated": "2026-03-19T13:18:30.516Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/ui/badges.tsx"
+    },
+    "supabase": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:25:38.347Z",
+        "lastUpdated": "2026-03-19T13:25:39.520Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/supabase/client.ts"
+    },
+    "sam-api": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:32:23.152Z",
+        "lastUpdated": "2026-03-19T14:03:47.443Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/sam-api/client.ts"
+    },
+    "sync-opportunities": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:32:45.188Z",
+        "lastUpdated": "2026-03-19T13:36:12.601Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/cron/sync-opportunities/route.ts"
+    },
+    "opportunities.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T13:57:17.003Z",
+        "lastUpdated": "2026-03-19T14:00:24.311Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/opportunities.ts"
+    },
+    "test-sam": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T14:03:59.795Z",
+        "lastUpdated": "2026-03-19T14:03:59.795Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/test-sam/route.ts"
+    },
+    "awards.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T14:53:22.156Z",
+        "lastUpdated": "2026-03-19T14:56:43.790Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/awards.ts"
+    },
+    "charts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T14:53:35.695Z",
+        "lastUpdated": "2026-03-19T14:53:35.695Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/charts/monthly-trend.tsx"
+    },
+    "admin.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:00:10.054Z",
+        "lastUpdated": "2026-03-19T15:03:22.510Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/admin.ts"
+    },
+    "admin": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:00:20.771Z",
+        "lastUpdated": "2026-03-19T15:03:13.110Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/actions.ts"
+    },
+    "ai-analysis.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:06:42.989Z",
+        "lastUpdated": "2026-03-19T15:06:42.989Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/ai-analysis.ts"
+    },
+    "competitor": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:07:21.832Z",
+        "lastUpdated": "2026-03-19T15:07:21.832Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/ai/competitor/route.ts"
+    },
+    "opportunity": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:07:23.796Z",
+        "lastUpdated": "2026-03-19T15:07:23.796Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/ai/opportunity/route.ts"
+    },
+    "ai": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:07:43.485Z",
+        "lastUpdated": "2026-03-19T15:07:43.485Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/ai/analysis-panel.tsx"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-03-19T12:37:12.444Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-03-19T15:08:52.676Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-03-19T12:54:50.654Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:55:12.712Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:55:31.422Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:55:35.740Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:55:37.524Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:56:11.312Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:56:19.517Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:56:57.872Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:57:31.830Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:58:10.539Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:58:35.547Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:59:11.430Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T12:59:38.361Z",
+      "feature": "notifications",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:00:09.458Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:09:36.711Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:18:30.516Z",
+      "feature": "ui",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:19:03.700Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:19:16.996Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:19:21.724Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:19:50.278Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:08.597Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:19.745Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:30.107Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:37.077Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:43.676Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:20:50.026Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:06.796Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:13.104Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:19.485Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:25.444Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:31.917Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:37.803Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:45.583Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:50.753Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:21:56.585Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:02.922Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:09.815Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:16.270Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:34.856Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:41.510Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:48.069Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:22:54.341Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:23:09.493Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:23:16.146Z",
+      "feature": "notifications",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:23:22.827Z",
+      "feature": "notifications",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:25:25.912Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:25:35.684Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:25:38.347Z",
+      "feature": "supabase",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:25:39.520Z",
+      "feature": "supabase",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:25:53.537Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:28:18.890Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:28:54.215Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:32:23.152Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:32:36.875Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:32:45.188Z",
+      "feature": "sync-opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:33:12.356Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:33:29.375Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:35:47.941Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:36:08.889Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:36:12.601Z",
+      "feature": "sync-opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:49:38.765Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:49:41.072Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:49:50.777Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:49:54.343Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:50:16.262Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:50:39.178Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:50:46.342Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:50:55.373Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:51:01.747Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:51:13.798Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:51:20.811Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:51:28.485Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:51:55.460Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:52:22.339Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:54:07.815Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:54:22.622Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:54:36.314Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:54:48.817Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:57:17.003Z",
+      "feature": "opportunities.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:57:46.501Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:58:04.918Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:59:21.035Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T13:59:44.936Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:00:05.422Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:00:24.311Z",
+      "feature": "opportunities.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:00:43.461Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:00:50.598Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:03:03.125Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:03:28.086Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:03:47.443Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:03:59.795Z",
+      "feature": "test-sam",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:04:39.330Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:10:37.438Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:10:49.557Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:50:31.569Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:53:22.156Z",
+      "feature": "awards.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:53:35.695Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:54:08.151Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:54:37.607Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:56:13.761Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:56:43.790Z",
+      "feature": "awards.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:56:53.774Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:57:02.429Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:57:15.877Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:57:22.756Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:57:30.100Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T14:57:50.093Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:00:10.054Z",
+      "feature": "admin.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:00:20.771Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:00:51.843Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:01:02.282Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:01:09.727Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:01:25.538Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:01:33.231Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:02:47.616Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:02:55.652Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:03:05.603Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:03:13.110Z",
+      "feature": "admin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:03:22.510Z",
+      "feature": "admin.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:06:42.989Z",
+      "feature": "ai-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:07:21.832Z",
+      "feature": "competitor",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:07:23.796Z",
+      "feature": "opportunity",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:07:43.485Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:07:57.209Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:08:05.163Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:08:13.512Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:08:29.322Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:08:52.676Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}
