@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 120;
 
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
@@ -15,11 +15,11 @@ import { formatAmount } from "@/lib/utils";
 
 export default async function AwardsPage() {
   const [stats, monthly, naics, amountDist, topAwardees] = await Promise.all([
-    getAwardStats(),
-    getMonthlyTrend(),
-    getNaicsBreakdown(),
-    getAmountDistribution(),
-    getTopAwardees(5),
+    getAwardStats().catch(() => ({ totalCount: 0, totalAmount: 0, avgAmount: 0, uniqueAwardees: 0 })),
+    getMonthlyTrend().catch(() => []),
+    getNaicsBreakdown().catch(() => []),
+    getAmountDistribution().catch(() => []),
+    getTopAwardees(5).catch(() => []),
   ]);
 
   const summaryStats = [
@@ -30,6 +30,11 @@ export default async function AwardsPage() {
   ];
 
   const totalNaicsAmount = naics.reduce((s, n) => s + n.amount, 0);
+
+  const now = new Date();
+  const sinceDate = new Date(now);
+  sinceDate.setMonth(sinceDate.getMonth() - 12);
+  const periodLabel = `${sinceDate.getFullYear()}.${String(sinceDate.getMonth() + 1).padStart(2, "0")} ~ ${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}`;
 
   return (
     <>
@@ -63,7 +68,10 @@ export default async function AwardsPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* NAICS Breakdown */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h3 className="mb-4 font-semibold">NAICS 분야별 낙찰 현황</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">NAICS 분야별 낙찰 현황</h3>
+            <span className="text-xs text-muted-foreground">{periodLabel}</span>
+          </div>
           {naics.length === 0 ? (
             <div className="py-8 text-center text-sm text-muted-foreground">데이터가 없습니다.</div>
           ) : (
@@ -105,7 +113,10 @@ export default async function AwardsPage() {
         {/* Top Awardees */}
         <div className="rounded-xl border border-border bg-card p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">상위 낙찰 업체</h3>
+            <div>
+              <h3 className="font-semibold">상위 낙찰 업체</h3>
+              <span className="text-xs text-muted-foreground">{periodLabel}</span>
+            </div>
             <Link href="/awards/competitors" className="text-sm text-primary hover:underline">
               경쟁사 분석 →
             </Link>

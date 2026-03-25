@@ -1,72 +1,12 @@
 import { Header } from "@/components/layout/header";
+import { getRequiredSession } from "@/lib/get-session";
+import { getRecentNotifications } from "@/lib/services/notifications";
+import Link from "next/link";
 
-const notifications = [
-  {
-    id: 1,
-    title: "Camp Humphreys Base Operations Support Services",
-    noticeId: "FA5209-24-R-0012",
-    filter: "캠프 험프리스 시설관리",
-    channel: "email",
-    status: "sent",
-    sentAt: "2024-03-19 09:31",
-    type: "new_match",
-  },
-  {
-    id: 2,
-    title: "USFK IT Infrastructure Modernization Program",
-    noticeId: "W91QV1-24-R-0033",
-    filter: "IT/통신 프로젝트",
-    channel: "email",
-    status: "sent",
-    sentAt: "2024-03-19 09:30",
-    type: "new_match",
-  },
-  {
-    id: 3,
-    title: "Camp Casey Facility Renovation Phase III",
-    noticeId: "W912UM-24-R-0045",
-    filter: "건설/리노베이션",
-    channel: "email",
-    status: "sent",
-    sentAt: "2024-03-18 14:22",
-    type: "deadline_warning",
-  },
-  {
-    id: 4,
-    title: "Korea-Wide Janitorial and Custodial Services",
-    noticeId: "FA5209-24-R-0022",
-    filter: "캠프 험프리스 시설관리",
-    channel: "email",
-    status: "sent",
-    sentAt: "2024-03-18 09:30",
-    type: "deadline_warning",
-  },
-  {
-    id: 5,
-    title: "Naval Fleet Activities Chinhae Waterfront Repair",
-    noticeId: "N62742-24-R-0021",
-    filter: "건설/리노베이션",
-    channel: "email",
-    status: "failed",
-    sentAt: "2024-03-17 16:02",
-    type: "new_match",
-  },
-  {
-    id: 6,
-    title: "Camp Humphreys Water Treatment Facility",
-    noticeId: "W912UM-24-R-0052",
-    filter: "환경/에너지",
-    channel: "email",
-    status: "sent",
-    sentAt: "2024-03-17 09:31",
-    type: "new_match",
-  },
-];
-
-const typeLabels: Record<string, string> = {
-  new_match: "신규 매칭",
-  deadline_warning: "마감 임박",
-  status_change: "상태 변경",
+const typeLabels: Record<string, { label: string; style: string }> = {
+  new_match: { label: "신규 매칭", style: "bg-primary/10 text-primary" },
+  deadline_warning: { label: "마감 임박", style: "bg-warning/10 text-warning" },
+  status_change: { label: "상태 변경", style: "bg-blue-500/10 text-blue-500" },
 };
 
 const statusLabels: Record<string, { label: string; style: string }> = {
@@ -75,7 +15,16 @@ const statusLabels: Record<string, { label: string; style: string }> = {
   failed: { label: "실패", style: "bg-destructive/10 text-destructive" },
 };
 
-export default function NotificationsPage() {
+function formatDate(date: Date | string | null) {
+  if (!date) return "-";
+  const d = typeof date === "string" ? new Date(date) : date;
+  return d.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
+}
+
+export default async function NotificationsPage() {
+  const session = await getRequiredSession();
+  const notifications = await getRecentNotifications(session.user.id!, 50);
+
   return (
     <>
       <Header title="알림" description="필터 매칭 알림 이력 및 설정" />
@@ -95,7 +44,7 @@ export default function NotificationsPage() {
               매칭 공고 발견 시 이메일 발송
             </div>
             <div className="mt-2 text-xs font-mono text-muted-foreground">
-              kim@company.com
+              {session.user.email}
             </div>
           </div>
           <div className="rounded-lg border border-border p-4">
@@ -135,57 +84,66 @@ export default function NotificationsPage() {
       <div className="rounded-xl border border-border bg-card overflow-x-auto">
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <h3 className="font-semibold">알림 이력</h3>
-          <div className="flex items-center gap-2">
-            <select className="h-8 rounded border border-input bg-background px-2 text-xs">
-              <option>전체 유형</option>
-              <option>신규 매칭</option>
-              <option>마감 임박</option>
-              <option>상태 변경</option>
-            </select>
-            <select className="h-8 rounded border border-input bg-background px-2 text-xs">
-              <option>전체 상태</option>
-              <option>발송완료</option>
-              <option>실패</option>
-            </select>
-          </div>
+          <span className="text-xs text-muted-foreground">총 {notifications.length}건</span>
         </div>
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border bg-secondary/50">
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">유형</th>
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">공고</th>
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">필터</th>
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">채널</th>
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">상태</th>
-              <th className="px-5 py-3 text-left font-medium text-muted-foreground">발송 시각</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {notifications.map((n) => (
-              <tr key={n.id} className="hover:bg-secondary/30 transition-colors">
-                <td className="px-5 py-3">
-                  <span className={`rounded-md px-2 py-0.5 text-xs ${
-                    n.type === "deadline_warning" ? "bg-warning/10 text-warning" : "bg-primary/10 text-primary"
-                  }`}>
-                    {typeLabels[n.type]}
-                  </span>
-                </td>
-                <td className="px-5 py-3">
-                  <div className="max-w-xs truncate">{n.title}</div>
-                  <div className="text-xs font-mono text-muted-foreground">{n.noticeId}</div>
-                </td>
-                <td className="px-5 py-3 text-muted-foreground">{n.filter}</td>
-                <td className="px-5 py-3 text-xs">📧 이메일</td>
-                <td className="px-5 py-3">
-                  <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusLabels[n.status].style}`}>
-                    {statusLabels[n.status].label}
-                  </span>
-                </td>
-                <td className="px-5 py-3 font-mono text-xs text-muted-foreground">{n.sentAt}</td>
+
+        {notifications.length === 0 ? (
+          <div className="px-5 py-12 text-center text-sm text-muted-foreground">
+            알림 이력이 없습니다. 맞춤 필터를 설정하면 매칭 공고 알림을 받을 수 있습니다.
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border bg-secondary/50">
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">유형</th>
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">공고</th>
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">채널</th>
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">상태</th>
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">읽음</th>
+                <th className="px-5 py-3 text-left font-medium text-muted-foreground">생성 시각</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {notifications.map((n) => {
+                const typeInfo = typeLabels[n.type] ?? typeLabels.new_match;
+                const statusInfo = statusLabels[n.status] ?? statusLabels.pending;
+                return (
+                  <tr key={n.id} className={`hover:bg-secondary/30 transition-colors ${!n.readAt ? "bg-primary/5" : ""}`}>
+                    <td className="px-5 py-3">
+                      <span className={`rounded-md px-2 py-0.5 text-xs ${typeInfo.style}`}>
+                        {typeInfo.label}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3">
+                      {n.opportunityId ? (
+                        <Link href={`/opportunities/${n.opportunityId}`} className="hover:underline">
+                          <div className="max-w-xs truncate">{n.opportunityTitle ?? n.subject}</div>
+                          {n.opportunityNoticeId && (
+                            <div className="text-xs font-mono text-muted-foreground">{n.opportunityNoticeId}</div>
+                          )}
+                        </Link>
+                      ) : (
+                        <div className="max-w-xs truncate">{n.subject}</div>
+                      )}
+                    </td>
+                    <td className="px-5 py-3 text-xs">📧 이메일</td>
+                    <td className="px-5 py-3">
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusInfo.style}`}>
+                        {statusInfo.label}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 text-xs text-muted-foreground">
+                      {n.readAt ? "✓" : "-"}
+                    </td>
+                    <td className="px-5 py-3 font-mono text-xs text-muted-foreground">
+                      {formatDate(n.createdAt)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );

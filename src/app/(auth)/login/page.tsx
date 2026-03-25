@@ -1,8 +1,8 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { loginAction } from "./action";
 
 export default function LoginPage() {
   return (
@@ -13,10 +13,8 @@ export default function LoginPage() {
 }
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const rawCallback = searchParams.get("callbackUrl") || "/";
-  // Open Redirect 방지: 상대경로만 허용
   const callbackUrl = rawCallback.startsWith("/") ? rawCallback : "/";
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,19 +25,13 @@ function LoginForm() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const result = await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get("password"),
-      redirect: false,
-    });
-
-    setLoading(false);
+    const result = await loginAction(formData);
 
     if (result?.error) {
-      setError("이메일 또는 비밀번호가 올바르지 않습니다.");
+      setLoading(false);
+      setError(result.error);
     } else {
-      router.push(callbackUrl);
-      router.refresh();
+      window.location.href = callbackUrl;
     }
   }
 

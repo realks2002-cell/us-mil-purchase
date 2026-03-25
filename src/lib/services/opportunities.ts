@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { opportunities } from "@/lib/db/schema";
 import { eq, desc, asc, ilike, and, or, sql, count, lte, gte } from "drizzle-orm";
+import { escapeLikePattern } from "@/lib/utils";
 
 export interface OpportunityFilters {
   search?: string;
@@ -29,12 +30,13 @@ export async function getOpportunities(filters: OpportunityFilters = {}) {
   const conditions = [];
 
   if (search) {
+    const escaped = escapeLikePattern(search);
     conditions.push(
       or(
-        ilike(opportunities.title, `%${search}%`),
-        ilike(opportunities.noticeId, `%${search}%`),
-        ilike(opportunities.department, `%${search}%`),
-        ilike(opportunities.office, `%${search}%`)
+        ilike(opportunities.title, `%${escaped}%`),
+        ilike(opportunities.noticeId, `%${escaped}%`),
+        ilike(opportunities.department, `%${escaped}%`),
+        ilike(opportunities.office, `%${escaped}%`)
       )
     );
   }
@@ -132,7 +134,6 @@ export async function getDashboardStats() {
   const now = new Date();
   const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-  const weekStart = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   const [
     [{ newToday }],

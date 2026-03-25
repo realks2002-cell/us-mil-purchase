@@ -18,6 +18,7 @@ export const opportunityStatusEnum = pgEnum("us_mil_opportunity_status", ["activ
 export const syncStatusEnum = pgEnum("us_mil_sync_status", ["running", "success", "failed"]);
 export const notificationStatusEnum = pgEnum("us_mil_notification_status", ["pending", "sent", "failed"]);
 export const notificationChannelEnum = pgEnum("us_mil_notification_channel", ["email", "sms", "slack"]);
+export const notificationTypeEnum = pgEnum("us_mil_notification_type", ["new_match", "deadline_warning", "status_change"]);
 
 // ─── Users ───────────────────────────────────────────
 export const users = pgTable("us_mil_users", {
@@ -106,7 +107,7 @@ export const awards = pgTable("us_mil_awards", {
   id: serial("id").primaryKey(),
   contractNumber: varchar("contract_number", { length: 100 }),
   opportunityId: integer("opportunity_id").references(() => opportunities.id, { onDelete: "set null" }),
-  noticeId: varchar("notice_id", { length: 100 }),
+  noticeId: varchar("notice_id", { length: 100 }).notNull().unique(),
   title: text("title"),
   awardeeName: text("awardee_name"),
   awardeeUei: varchar("awardee_uei", { length: 50 }),
@@ -153,14 +154,18 @@ export const notifications = pgTable("us_mil_notifications", {
   userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   opportunityId: integer("opportunity_id").references(() => opportunities.id, { onDelete: "set null" }),
   filterId: integer("filter_id").references(() => userFilters.id, { onDelete: "set null" }),
+  type: notificationTypeEnum("type").notNull().default("new_match"),
   channel: notificationChannelEnum("channel").notNull().default("email"),
   status: notificationStatusEnum("status").notNull().default("pending"),
   subject: text("subject"),
   body: text("body"),
+  readAt: timestamp("read_at", { withTimezone: true }),
   sentAt: timestamp("sent_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [
   index("idx_us_mil_notif_user_id").on(table.userId),
+  index("idx_us_mil_notif_user_read").on(table.userId, table.readAt),
+  unique("us_mil_notif_unique").on(table.userId, table.opportunityId, table.type),
 ]);
 
 // ─── Sync Logs (수집 로그) ──────────────────────────
@@ -177,6 +182,83 @@ export const syncLogs = pgTable("us_mil_sync_logs", {
   completedAt: timestamp("completed_at", { withTimezone: true }),
 });
 
+// ─── USAspending Awards (상세 계약 데이터) ──────────
+export const usaspendingAwards = pgTable("us_mil_usaspending_awards", {
+  id: serial("id").primaryKey(),
+  awardId: varchar("award_id", { length: 100 }).notNull().unique(),
+  piid: varchar("piid", { length: 100 }),
+  awardeeName: text("awardee_name"),
+  awardeeUei: varchar("awardee_uei", { length: 50 }),
+  totalObligation: numeric("total_obligation", { precision: 15, scale: 2 }),
+  baseAndAllOptions: numeric("base_and_all_options", { precision: 15, scale: 2 }),
+  competitionType: varchar("competition_type", { length: 100 }),
+  numberOfOffers: integer("number_of_offers"),
+  naicsCode: varchar("naics_code", { length: 10 }),
+  naicsDescription: text("naics_description"),
+  psc: varchar("psc", { length: 10 }),
+  pscDescription: text("psc_description"),
+  startDate: timestamp("start_date", { withTimezone: true }),
+  endDate: timestamp("end_date", { withTimezone: true }),
+  fundingAgency: text("funding_agency"),
+  fundingSubAgency: text("funding_sub_agency"),
+  awardingAgency: text("awarding_agency"),
+  performanceCountry: varchar("performance_country", { length: 10 }),
+  performanceCity: text("performance_city"),
+  setAside: text("set_aside"),
+  samAwardId: integer("sam_award_id").references(() => awards.id, { onDelete: "set null" }),
+  rawData: jsonb("raw_data"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow().$onUpdate(() => new Date()),
+}, (table) => [
+  index("idx_us_mil_usa_naics").on(table.naicsCode),
+  index("idx_us_mil_usa_awardee").on(table.awardeeName),
+  index("idx_us_mil_usa_awardee_uei").on(table.awardeeUei),
+  index("idx_us_mil_usa_competition").on(table.competitionType),
+  index("idx_us_mil_usa_start_date").on(table.startDate),
+  index("idx_us_mil_usa_piid").on(table.piid),
+  index("idx_us_mil_usa_country").on(table.performanceCountry),
+]);
+
+// ─── Vendors (경쟁사 프로필 캐시) ──────────────────
+export const vendors = pgTable("us_mil_vendors", {
+  id: serial("id").primaryKey(),
+  uei: varchar("uei", { length: 50 }).notNull().unique(),
+  name: text("name").notNull(),
+  duns: varchar("duns", { length: 20 }),
+  totalAwardCount: integer("total_award_count").default(0),
+  totalAwardAmount: numeric("total_award_amount", { precision: 15, scale: 2 }).default("0"),
+  primaryNaics: text("primary_naics").array(),
+  primaryPsc: text("primary_psc").array(),
+  competitiveWinCount: integer("competitive_win_count").default(0),
+  soleSourceCount: integer("sole_source_count").default(0),
+  avgContractValue: numeric("avg_contract_value", { precision: 15, scale: 2 }),
+  lastAwardDate: timestamp("last_award_date", { withTimezone: true }),
+  rawRecipientData: jsonb("raw_recipient_data"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow().$onUpdate(() => new Date()),
+}, (table) => [
+  index("idx_us_mil_vendor_name").on(table.name),
+]);
+
+// ─── Vendor NAICS Stats (벤더별 NAICS 세부 통계) ────
+export const vendorNaicsStats = pgTable("us_mil_vendor_naics_stats", {
+  id: serial("id").primaryKey(),
+  vendorUei: varchar("vendor_uei", { length: 50 }).notNull().references(() => vendors.uei, { onDelete: "cascade" }),
+  naicsCode: varchar("naics_code", { length: 10 }).notNull(),
+  awardCount: integer("award_count").default(0),
+  totalAmount: numeric("total_amount", { precision: 15, scale: 2 }).default("0"),
+  avgAmount: numeric("avg_amount", { precision: 15, scale: 2 }),
+  competitiveWinCount: integer("competitive_win_count").default(0),
+  soleSourceCount: integer("sole_source_count").default(0),
+  lastAwardDate: timestamp("last_award_date", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow().$onUpdate(() => new Date()),
+}, (table) => [
+  unique("us_mil_vendor_naics_unique").on(table.vendorUei, table.naicsCode),
+  index("idx_us_mil_vns_uei").on(table.vendorUei),
+  index("idx_us_mil_vns_naics").on(table.naicsCode),
+]);
+
 // ─── Type Exports ───────────────────────────────────
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -190,3 +272,9 @@ export type Notification = typeof notifications.$inferSelect;
 export type NewNotification = typeof notifications.$inferInsert;
 export type SyncLog = typeof syncLogs.$inferSelect;
 export type NewSyncLog = typeof syncLogs.$inferInsert;
+export type UsaspendingAward = typeof usaspendingAwards.$inferSelect;
+export type NewUsaspendingAward = typeof usaspendingAwards.$inferInsert;
+export type Vendor = typeof vendors.$inferSelect;
+export type NewVendor = typeof vendors.$inferInsert;
+export type VendorNaicsStat = typeof vendorNaicsStats.$inferSelect;
+export type NewVendorNaicsStat = typeof vendorNaicsStats.$inferInsert;

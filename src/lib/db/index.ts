@@ -15,8 +15,9 @@ export function getDb(): PostgresJsDatabase<typeof schema> {
   // Supabase Transaction pooler (port 6543) - requires prepare: false
   const client = postgres(connectionString, {
     prepare: false,
-    max: 1,
+    max: 5,
     idle_timeout: 20,
+    connect_timeout: 15,
   });
 
   _db = drizzle(client, { schema });

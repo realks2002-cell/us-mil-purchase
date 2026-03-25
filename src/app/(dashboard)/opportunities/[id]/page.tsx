@@ -3,15 +3,16 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { StatusBadge } from "@/components/ui/badges";
 import { AiAnalysisPanel } from "@/components/ai/analysis-panel";
+import { ExternalContent } from "@/components/opportunities/external-content";
 import { getOpportunityById } from "@/lib/services/opportunities";
+import { getNoticeDescription } from "@/lib/sam-api/client";
+import { db } from "@/lib/db";
+import { opportunities } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import { daysUntil, stripHtml } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-function daysUntil(date: Date | null): number | null {
-  if (!date) return null;
-  return Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
 }
 
 export default async function OpportunityDetailPage({ params }: PageProps) {
@@ -21,6 +22,20 @@ export default async function OpportunityDetailPage({ params }: PageProps) {
   const opp = await getOpportunityById(numId);
 
   if (!opp) notFound();
+
+  // description이 없거나 URL인 경우 SAM API에서 가져와 DB 업데이트
+  if (!opp.description || opp.description.startsWith("https://api.sam.gov/")) {
+    const fetched = await getNoticeDescription(opp.noticeId);
+    if (fetched) {
+      const cleaned = stripHtml(fetched);
+      opp.description = cleaned;
+      await db
+        .update(opportunities)
+        .set({ description: cleaned })
+        .where(eq(opportunities.id, opp.id))
+        .catch(() => {});
+    }
+  }
 
   const days = daysUntil(opp.responseDeadline);
   const displayStatus =
@@ -81,42 +96,56 @@ export default async function OpportunityDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="space-y-6">
         {/* Main Content */}
-        <div className="space-y-6 lg:col-span-2">
+        <div className="space-y-6">
           {opp.description && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="mb-4 font-semibold">공고 내용</h3>
-              <div className="whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
-                {opp.description}
+              <div className="mb-4 flex items-center justify-between">
+                <h3 className="font-semibold">공고 내용</h3>
+                <AiAnalysisPanel
+                  apiUrl="/api/ai/summary"
+                  body={{ opportunityId: opp.id }}
+                  buttonLabel="AI 요약"
+                  title={`${opp.title} — 한국어 요약`}
+                />
               </div>
+              <ExternalContent description={opp.description} />
             </div>
           )}
 
           {Array.isArray(opp.resourceLinks) && opp.resourceLinks.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="mb-4 font-semibold">관련 링크</h3>
+              <h3 className="mb-4 font-semibold">첨부파일</h3>
+              <p className="mb-3 text-xs text-muted-foreground">
+                SAM.gov 로그인 후 공고 페이지에서 다운로드할 수 있습니다.
+              </p>
               <div className="space-y-2">
                 {(opp.resourceLinks as string[])
                   .filter((link: string) => link.startsWith("http://") || link.startsWith("https://"))
-                  .map((link: string, i: number) => (
-                  <a
-                    key={i}
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-sm text-primary hover:underline truncate"
-                  >
-                    {link}
-                  </a>
+                  .map((_link: string, i: number) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span>📎</span>
+                    <span>첨부파일 {i + 1}</span>
+                  </div>
                 ))}
               </div>
+              {opp.uiLink && (
+                <a
+                  href={opp.uiLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center rounded-md bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+                >
+                  SAM.gov에서 다운로드 →
+                </a>
+              )}
             </div>
           )}
         </div>
 
-        {/* Sidebar */}
-        <div className="space-y-6">
+        {/* Info Cards */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="rounded-xl border border-border bg-card p-5">
             <h3 className="mb-4 font-semibold">액션</h3>
             <div className="space-y-2">

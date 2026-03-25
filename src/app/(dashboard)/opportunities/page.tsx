@@ -5,21 +5,10 @@ import { Header } from "@/components/layout/header";
 import { StatusBadge } from "@/components/ui/badges";
 import { getOpportunities, getNaicsCodes } from "@/lib/services/opportunities";
 import { OpportunitySearch } from "./search";
+import { daysUntil } from "@/lib/utils";
 
 interface PageProps {
   searchParams: Promise<Record<string, string | undefined>>;
-}
-
-function formatStatus(status: string) {
-  if (status === "active") return "active";
-  if (status === "inactive") return "closed";
-  return status;
-}
-
-function daysUntil(date: Date | null): number | null {
-  if (!date) return null;
-  const diff = date.getTime() - Date.now();
-  return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
 function getDisplayStatus(opp: { status: string; responseDeadline: Date | null }) {
@@ -38,8 +27,8 @@ export default async function OpportunitiesPage({ searchParams }: PageProps) {
   const naicsCode = params.naics || "";
 
   const [result, naicsCodes] = await Promise.all([
-    getOpportunities({ search, type, status, naicsCode, page, pageSize: 20 }),
-    getNaicsCodes(),
+    getOpportunities({ search, type, status, naicsCode, page, pageSize: 20 }).catch(() => ({ data: [], total: 0, totalPages: 0 })),
+    getNaicsCodes().catch(() => []),
   ]);
 
   return (

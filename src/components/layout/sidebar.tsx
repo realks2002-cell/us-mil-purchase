@@ -17,6 +17,9 @@ import {
   Radio,
   Menu,
   X,
+  TrendingUp,
+  Target,
+  DollarSign,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,6 +30,9 @@ const navigation: NavItem[] = [
   { name: "입찰 공고", href: "/opportunities", icon: FileText },
   { name: "낙찰 분석", href: "/awards", icon: BarChart3 },
   { name: "경쟁사 분석", href: "/awards/competitors", icon: Building2 },
+  { name: "발주 패턴", href: "/analysis/patterns", icon: TrendingUp },
+  { name: "유망 분야", href: "/analysis/sectors", icon: Target },
+  { name: "가격 분석", href: "/analysis/pricing", icon: DollarSign },
   { name: "맞춤 필터", href: "/filters", icon: SlidersHorizontal },
   { name: "알림", href: "/notifications", icon: Bell },
 ];

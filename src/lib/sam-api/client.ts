@@ -156,6 +156,37 @@ export async function searchOpportunities(
   return samFetch<SamOpportunityResponse>(`${SAM_BASE_URL}/search`, searchParams);
 }
 
+const SAM_V1_BASE_URL = "https://api.sam.gov/prod/opportunities/v1";
+
+export async function getNoticeDescription(noticeId: string): Promise<string | null> {
+  try {
+    const params = new URLSearchParams({
+      noticeid: noticeId,
+      api_key: getApiKey(),
+    });
+    const url = `${SAM_V1_BASE_URL}/noticedesc?${params.toString()}`;
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.warn(`[SAM API] noticedesc ${noticeId}: HTTP ${res.status}`);
+      return null;
+    }
+
+    const data = await res.json() as { description?: string; description2?: string };
+    const desc = data.description || data.description2 || null;
+    if (desc) {
+      console.log(`[SAM API] noticedesc ${noticeId}: ${desc.length}자`);
+    }
+    return desc;
+  } catch (error) {
+    console.warn(`[SAM API] getNoticeDescription(${noticeId}) 실패:`, error);
+    return null;
+  }
+}
+
 export async function getOpportunityById(noticeId: string): Promise<SamOpportunity | null> {
   try {
     const res = await samFetch<SamOpportunityResponse>(`${SAM_BASE_URL}/search`, {
@@ -191,6 +222,37 @@ export async function searchKoreaOpportunities(
   const byKeyword = await searchOpportunities({ ...params, keyword });
 
   // 중복 제거 후 병합
+  const seen = new Set(byPlace.opportunitiesData.map((o) => o.noticeId));
+  const merged = [...byPlace.opportunitiesData];
+  for (const opp of byKeyword.opportunitiesData) {
+    if (!seen.has(opp.noticeId)) {
+      merged.push(opp);
+      seen.add(opp.noticeId);
+    }
+  }
+
+  return {
+    totalRecords: merged.length,
+    limit: params.limit ?? 1000,
+    offset: params.offset ?? 0,
+    opportunitiesData: merged,
+  };
+}
+
+// Award Notice 수집 (noticeType=a: Award Notice)
+export async function searchKoreaAwards(
+  params: Omit<SamSearchParams, "keyword" | "placeOfPerformanceCode" | "noticeType"> = {}
+): Promise<SamOpportunityResponse> {
+  const baseParams = { ...params, noticeType: "a" };
+
+  const byPlace = await searchOpportunities({
+    ...baseParams,
+    placeOfPerformanceCode: "KOR",
+  });
+
+  const keyword = KOREA_KEYWORDS.join(" OR ");
+  const byKeyword = await searchOpportunities({ ...baseParams, keyword });
+
   const seen = new Set(byPlace.opportunitiesData.map((o) => o.noticeId));
   const merged = [...byPlace.opportunitiesData];
   for (const opp of byKeyword.opportunitiesData) {

@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { getOpportunityContext, streamOpportunityAnalysis } from "@/lib/services/ai-analysis";
+import { createAiStreamResponse } from "@/lib/services/ai-stream";
 
 export const maxDuration = 60;
 
@@ -27,5 +28,5 @@ export async function POST(request: Request) {
   }
 
   const result = streamOpportunityAnalysis(context);
-  return result.toTextStreamResponse();
+  return createAiStreamResponse(result, "AI Opportunity");
 }

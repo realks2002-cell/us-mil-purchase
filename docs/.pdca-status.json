@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-03-19T15:23:27.614Z",
+  "lastUpdated": "2026-03-25T05:19:42.152Z",
   "activeFeatures": [
     "Us-mil",
     "layout",
@@ -27,7 +27,29 @@
     "ai-analysis.ts",
     "competitor",
     "opportunity",
-    "ai"
+    "ai",
+    "sync-awards",
+    "sync",
+    "settings",
+    "e2e",
+    "summary",
+    "usaspending-api",
+    "sync-usaspending",
+    "competitor-analysis.ts",
+    "[uei]",
+    "compare",
+    "ordering-patterns.ts",
+    "sector-analysis.ts",
+    "price-analysis.ts",
+    "patterns",
+    "sectors",
+    "pricing",
+    "filters.ts",
+    "resources",
+    "notifications.ts",
+    "read",
+    "sync-utils.ts",
+    "ai-stream.ts"
   ],
   "primaryFeature": "Us-mil",
   "features": {
@@ -40,9 +62,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:54:50.654Z",
-        "lastUpdated": "2026-03-19T14:56:13.761Z"
+        "lastUpdated": "2026-03-25T05:16:15.774Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/utils.ts"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/seed.ts"
     },
     "layout": {
       "phase": "do",
@@ -53,9 +75,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:55:31.422Z",
-        "lastUpdated": "2026-03-19T13:54:22.622Z"
+        "lastUpdated": "2026-03-25T02:56:33.410Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/layout/sidebar.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/layout/header.tsx"
     },
     "(dashboard)": {
       "phase": "do",
@@ -66,7 +88,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:55:37.524Z",
-        "lastUpdated": "2026-03-19T14:00:43.461Z"
+        "lastUpdated": "2026-03-25T05:17:40.163Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/page.tsx"
     },
@@ -79,9 +101,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:56:19.517Z",
-        "lastUpdated": "2026-03-19T13:54:36.314Z"
+        "lastUpdated": "2026-03-19T16:47:53.804Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(auth)/login/page.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(auth)/login/action.ts"
     },
     "opportunities": {
       "phase": "do",
@@ -92,9 +114,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:56:57.872Z",
-        "lastUpdated": "2026-03-19T15:02:47.616Z"
+        "lastUpdated": "2026-03-25T05:17:45.765Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/export/opportunities/route.ts"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/opportunities/page.tsx"
     },
     "[id]": {
       "phase": "do",
@@ -105,7 +127,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:57:31.830Z",
-        "lastUpdated": "2026-03-19T15:20:54.530Z"
+        "lastUpdated": "2026-03-25T05:17:59.955Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/opportunities/[id]/page.tsx"
     },
@@ -118,9 +140,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:58:10.539Z",
-        "lastUpdated": "2026-03-19T15:02:55.652Z"
+        "lastUpdated": "2026-03-25T04:40:52.154Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/export/awards/route.ts"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/awards/page.tsx"
     },
     "competitors": {
       "phase": "do",
@@ -131,7 +153,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:58:35.546Z",
-        "lastUpdated": "2026-03-19T15:08:13.512Z"
+        "lastUpdated": "2026-03-25T04:47:52.566Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/awards/competitors/page.tsx"
     },
@@ -144,9 +166,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:59:11.430Z",
-        "lastUpdated": "2026-03-19T12:59:11.430Z"
+        "lastUpdated": "2026-03-21T04:22:51.643Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/filters/page.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/filters/filter-form-modal.tsx"
     },
     "notifications": {
       "phase": "do",
@@ -157,7 +179,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T12:59:38.361Z",
-        "lastUpdated": "2026-03-19T13:23:22.827Z"
+        "lastUpdated": "2026-03-25T02:47:05.663Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/notifications/page.tsx"
     },
@@ -170,9 +192,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T13:00:09.458Z",
-        "lastUpdated": "2026-03-19T15:01:09.727Z"
+        "lastUpdated": "2026-03-19T16:50:03.548Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/users/add-user-form.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/users/page.tsx"
     },
     "db": {
       "phase": "do",
@@ -183,7 +205,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T13:09:36.710Z",
-        "lastUpdated": "2026-03-19T14:57:50.093Z"
+        "lastUpdated": "2026-03-25T02:42:27.935Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/db/schema.ts"
     },
@@ -222,9 +244,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T13:32:23.152Z",
-        "lastUpdated": "2026-03-19T14:03:47.443Z"
+        "lastUpdated": "2026-03-25T05:16:36.973Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/sam-api/client.ts"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/sam-api/sync.ts"
     },
     "sync-opportunities": {
       "phase": "do",
@@ -235,7 +257,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T13:32:45.188Z",
-        "lastUpdated": "2026-03-19T13:36:12.601Z"
+        "lastUpdated": "2026-03-25T02:46:34.939Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/cron/sync-opportunities/route.ts"
     },
@@ -248,7 +270,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T13:57:17.003Z",
-        "lastUpdated": "2026-03-19T15:21:45.170Z"
+        "lastUpdated": "2026-03-25T05:18:11.387Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/opportunities.ts"
     },
@@ -261,7 +283,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T14:03:59.795Z",
-        "lastUpdated": "2026-03-19T14:03:59.795Z"
+        "lastUpdated": "2026-03-25T05:18:23.773Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/test-sam/route.ts"
     },
@@ -287,9 +309,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T14:53:35.695Z",
-        "lastUpdated": "2026-03-19T14:53:35.695Z"
+        "lastUpdated": "2026-03-21T04:04:44.599Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/charts/monthly-trend.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/charts/competition-type-chart.tsx"
     },
     "admin.ts": {
       "phase": "do",
@@ -326,7 +348,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T15:06:42.989Z",
-        "lastUpdated": "2026-03-19T15:23:27.614Z"
+        "lastUpdated": "2026-03-20T04:00:24.986Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/ai-analysis.ts"
     },
@@ -339,7 +361,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T15:07:21.832Z",
-        "lastUpdated": "2026-03-19T15:22:48.354Z"
+        "lastUpdated": "2026-03-25T05:17:18.887Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/ai/competitor/route.ts"
     },
@@ -352,7 +374,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T15:07:23.796Z",
-        "lastUpdated": "2026-03-19T15:22:51.304Z"
+        "lastUpdated": "2026-03-25T05:17:34.058Z"
       },
       "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/ai/opportunity/route.ts"
     },
@@ -365,9 +387,295 @@
       "documents": {},
       "timestamps": {
         "started": "2026-03-19T15:07:43.485Z",
-        "lastUpdated": "2026-03-19T15:07:43.485Z"
+        "lastUpdated": "2026-03-21T03:54:49.984Z"
       },
-      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/ai/analysis-panel.tsx"
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/components/ai/competitor-analysis-modal.tsx"
+    },
+    "sync-awards": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:31:49.646Z",
+        "lastUpdated": "2026-03-19T15:31:49.646Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/cron/sync-awards/route.ts"
+    },
+    "sync": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:39:35.425Z",
+        "lastUpdated": "2026-03-25T04:48:06.662Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/sync/sync-buttons.tsx"
+    },
+    "settings": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:39:52.350Z",
+        "lastUpdated": "2026-03-21T04:36:14.296Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/admin/settings/page.tsx"
+    },
+    "e2e": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-19T15:41:19.523Z",
+        "lastUpdated": "2026-03-19T16:19:13.624Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/e2e/app.spec.ts"
+    },
+    "summary": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T00:50:14.477Z",
+        "lastUpdated": "2026-03-25T05:17:04.813Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/ai/summary/route.ts"
+    },
+    "usaspending-api": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:52:11.420Z",
+        "lastUpdated": "2026-03-25T05:19:06.916Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/usaspending-api/sync.ts"
+    },
+    "sync-usaspending": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:53:16.694Z",
+        "lastUpdated": "2026-03-20T03:53:16.694Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/cron/sync-usaspending/route.ts"
+    },
+    "competitor-analysis.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:54:51.176Z",
+        "lastUpdated": "2026-03-20T03:54:51.176Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/competitor-analysis.ts"
+    },
+    "[uei]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:57:11.990Z",
+        "lastUpdated": "2026-03-20T03:57:11.990Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/awards/competitors/[uei]/page.tsx"
+    },
+    "compare": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:57:42.546Z",
+        "lastUpdated": "2026-03-21T04:07:04.029Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/awards/competitors/compare/page.tsx"
+    },
+    "ordering-patterns.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:57:59.939Z",
+        "lastUpdated": "2026-03-20T03:57:59.939Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/ordering-patterns.ts"
+    },
+    "sector-analysis.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:58:17.726Z",
+        "lastUpdated": "2026-03-25T01:48:07.067Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/sector-analysis.ts"
+    },
+    "price-analysis.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:58:34.529Z",
+        "lastUpdated": "2026-03-20T03:58:34.529Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/price-analysis.ts"
+    },
+    "patterns": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:59:03.553Z",
+        "lastUpdated": "2026-03-25T04:48:02.268Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/analysis/patterns/page.tsx"
+    },
+    "sectors": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:59:31.327Z",
+        "lastUpdated": "2026-03-25T04:48:03.900Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/analysis/sectors/page.tsx"
+    },
+    "pricing": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-20T03:59:51.071Z",
+        "lastUpdated": "2026-03-25T04:48:00.633Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/(dashboard)/analysis/pricing/page.tsx"
+    },
+    "filters.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-21T04:16:26.676Z",
+        "lastUpdated": "2026-03-21T04:22:16.937Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/filters.ts"
+    },
+    "resources": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-25T02:04:20.236Z",
+        "lastUpdated": "2026-03-25T02:22:49.618Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/opportunities/[id]/resources/route.ts"
+    },
+    "notifications.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-25T02:45:02.694Z",
+        "lastUpdated": "2026-03-25T02:45:02.694Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/notifications.ts"
+    },
+    "read": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-25T02:45:07.181Z",
+        "lastUpdated": "2026-03-25T02:53:55.881Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/app/api/notifications/read/route.ts"
+    },
+    "sync-utils.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-25T05:15:54.969Z",
+        "lastUpdated": "2026-03-25T05:15:54.969Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/sync-utils.ts"
+    },
+    "ai-stream.ts": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-03-25T05:16:03.896Z",
+        "lastUpdated": "2026-03-25T05:19:42.151Z"
+      },
+      "lastFile": "/Users/kenny/Desktop/Task/Us-mil/src/lib/services/ai-stream.ts"
     }
   },
   "pipeline": {
@@ -378,7 +686,7 @@
   "session": {
     "startedAt": "2026-03-19T12:37:12.444Z",
     "onboardingCompleted": false,
-    "lastActivity": "2026-03-19T15:23:27.614Z"
+    "lastActivity": "2026-03-25T05:19:42.152Z"
   },
   "history": [
     {
@@ -1200,6 +1508,1452 @@
     {
       "timestamp": "2026-03-19T15:23:27.614Z",
       "feature": "ai-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:31:00.724Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:31:07.673Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:31:33.794Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:31:49.646Z",
+      "feature": "sync-awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:32:07.145Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:32:14.295Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:34:17.314Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:34:30.155Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:34:34.818Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:34:42.417Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:34:52.012Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:37:09.763Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:39:35.425Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:39:52.350Z",
+      "feature": "settings",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:40:59.540Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:41:19.523Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:44:32.830Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:46:36.072Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:49:30.336Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:50:05.753Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:50:35.600Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:50:53.305Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:55:06.633Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:55:36.961Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:56:57.044Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:58:01.791Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:58:19.991Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:58:38.897Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:58:45.438Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:59:09.303Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:59:28.717Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T15:59:34.948Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:00:14.460Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:02:05.824Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:05:41.553Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:06:53.129Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:07:53.393Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:12:06.467Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:19:13.624Z",
+      "feature": "e2e",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:42:17.061Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:46:39.678Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:47:47.827Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:47:53.804Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:49:00.709Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:49:11.037Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:49:25.957Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:49:36.942Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:49:57.186Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:50:03.548Z",
+      "feature": "users",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:50:09.378Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:50:23.602Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:58:21.314Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:58:31.845Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:58:39.946Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:58:51.651Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-19T16:58:55.295Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T00:50:14.477Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T00:50:28.747Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T01:42:36.383Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T01:43:57.987Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T01:44:14.684Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:05:28.052Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:09:05.483Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:10:29.211Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:11:39.056Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:11:58.942Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:12:05.951Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:16:23.642Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:16:35.450Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:17:26.179Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:20:36.323Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T02:21:11.113Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:02:51.648Z",
+      "feature": "competitor",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:02:59.677Z",
+      "feature": "opportunity",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:05:33.687Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:06:12.583Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:23:14.724Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:23:30.332Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:23:36.365Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:23:41.928Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:23:56.823Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:24:06.386Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:24:18.006Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:24:24.386Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:51:27.459Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:52:11.420Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:03.983Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:16.694Z",
+      "feature": "sync-usaspending",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:32.427Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:38.283Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:44.251Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:49.552Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:53:56.383Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:54:03.049Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:54:08.039Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:54:51.176Z",
+      "feature": "competitor-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:55:04.708Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:56:26.497Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:57:11.990Z",
+      "feature": "[uei]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:57:42.546Z",
+      "feature": "compare",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:57:59.939Z",
+      "feature": "ordering-patterns.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:58:17.726Z",
+      "feature": "sector-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:58:34.529Z",
+      "feature": "price-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:59:03.553Z",
+      "feature": "patterns",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:59:31.327Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T03:59:51.071Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:00:24.986Z",
+      "feature": "ai-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:00:43.993Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:00:52.854Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:01:21.150Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:01:37.804Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:01:55.442Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-20T04:02:07.566Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T02:58:05.089Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T02:58:16.149Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:13.777Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:18.237Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:27.507Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:31.365Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:35.037Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:39.744Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:08:47.429Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:17:58.774Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:29:47.537Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:30:06.353Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:34:46.297Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:34:58.749Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:05.084Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:19.684Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:32.775Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:38.446Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:46.998Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:35:57.413Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:41:53.991Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:03.910Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:08.583Z",
+      "feature": "sector-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:17.042Z",
+      "feature": "sector-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:21.300Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:27.387Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:42:41.942Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:13.539Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:18.926Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:31.914Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:38.728Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:43.375Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:50.815Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:47:56.446Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:52:28.445Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T03:54:49.984Z",
+      "feature": "ai",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:04:39.134Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:04:44.599Z",
+      "feature": "charts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:07:04.029Z",
+      "feature": "compare",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:16:26.676Z",
+      "feature": "filters.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:16:41.190Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:17:15.964Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:17:37.688Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:17:43.979Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:16.937Z",
+      "feature": "filters.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:22.813Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:28.862Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:33.759Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:39.685Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:44.862Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:22:51.643Z",
+      "feature": "filters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-21T04:36:14.296Z",
+      "feature": "settings",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:40.458Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:41.232Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:42.134Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:43.031Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:43.784Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:46:53.889Z",
+      "feature": "sector-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:47:21.580Z",
+      "feature": "patterns",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:48:07.067Z",
+      "feature": "sector-analysis.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:48:18.130Z",
+      "feature": "opportunities.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T01:48:37.547Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:03:53.478Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:04:20.236Z",
+      "feature": "resources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:05:03.610Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:05:22.258Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:05:36.883Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:05:53.175Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:16:19.861Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:18:12.921Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:18:20.631Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:19:43.046Z",
+      "feature": "resources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:19:55.750Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:22:30.573Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:22:49.618Z",
+      "feature": "resources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:24:00.838Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:26:18.542Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:26:25.257Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:31:25.901Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:31:30.191Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:31:36.320Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:42:16.769Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:42:27.935Z",
+      "feature": "db",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:02.694Z",
+      "feature": "notifications.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:04.525Z",
+      "feature": "notifications",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:07.181Z",
+      "feature": "read",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:27.951Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:41.793Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:45:52.161Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:46:15.763Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:46:34.939Z",
+      "feature": "sync-opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:47:05.663Z",
+      "feature": "notifications",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:53:55.881Z",
+      "feature": "read",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:54:02.138Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T02:56:33.410Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:40:42.607Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:40:47.613Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:40:52.154Z",
+      "feature": "awards",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:47:52.566Z",
+      "feature": "competitors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:48:00.633Z",
+      "feature": "pricing",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:48:02.268Z",
+      "feature": "patterns",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:48:03.900Z",
+      "feature": "sectors",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:48:06.069Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:48:06.662Z",
+      "feature": "sync",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:51:38.546Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T04:51:43.561Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:09:52.482Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:09:57.164Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:15:48.829Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:15:54.969Z",
+      "feature": "sync-utils.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:03.896Z",
+      "feature": "ai-stream.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:15.774Z",
+      "feature": "Us-mil",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:28.043Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:36.973Z",
+      "feature": "sam-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:45.272Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:16:53.656Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:04.813Z",
+      "feature": "summary",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:18.887Z",
+      "feature": "competitor",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:34.058Z",
+      "feature": "opportunity",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:40.163Z",
+      "feature": "(dashboard)",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:45.765Z",
+      "feature": "opportunities",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:54.120Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:17:59.955Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:18:05.861Z",
+      "feature": "opportunities.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:18:11.387Z",
+      "feature": "opportunities.ts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:18:23.773Z",
+      "feature": "test-sam",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:19:06.916Z",
+      "feature": "usaspending-api",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-03-25T05:19:42.151Z",
+      "feature": "ai-stream.ts",
       "phase": "do",
       "action": "updated"
     }

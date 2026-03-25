@@ -10,9 +10,9 @@ export default async function AdminUsersPage() {
   await getAdminSession();
 
   const [userList, logs, stats] = await Promise.all([
-    getUsers(),
-    getSyncLogs(10),
-    getSystemStats(),
+    getUsers().catch(() => []),
+    getSyncLogs(10).catch(() => []),
+    getSystemStats().catch(() => ({ totalOpps: 0, totalAwards: 0, totalUsers: 0, lastSync: null })),
   ]);
 
   const systemStats = [

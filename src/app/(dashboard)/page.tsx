@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
@@ -8,17 +8,13 @@ import {
   getRecentOpportunities,
   getClosingOpportunities,
 } from "@/lib/services/opportunities";
-
-function daysUntil(date: Date | null): number | null {
-  if (!date) return null;
-  return Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
-}
+import { daysUntil } from "@/lib/utils";
 
 export default async function DashboardPage() {
   const [stats, recentOpps, closingOpps] = await Promise.all([
-    getDashboardStats(),
-    getRecentOpportunities(5),
-    getClosingOpportunities(5),
+    getDashboardStats().catch(() => ({ newToday: 0, closingSoon: 0, totalActive: 0 })),
+    getRecentOpportunities(5).catch(() => []),
+    getClosingOpportunities(5).catch(() => []),
   ]);
 
   const statCards = [

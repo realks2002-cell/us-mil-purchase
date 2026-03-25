@@ -15,21 +15,26 @@ export function AmountDistributionChart({ data }: { data: RangeData[] }) {
     );
   }
 
+  const maxCount = Math.max(...data.map((d) => d.count), 1);
+
   return (
     <div className="space-y-3">
-      {data.map((range) => (
-        <div key={range.range} className="flex items-center gap-3">
-          <span className="w-28 text-sm font-mono text-muted-foreground">{range.range}</span>
-          <div className="flex-1 h-6 rounded-md bg-secondary overflow-hidden">
-            <div
-              className="h-full rounded-md bg-chart-1 transition-all"
-              style={{ width: `${Math.max(range.pct, 1)}%` }}
-            />
+      {data.map((range) => {
+        const barWidth = (range.count / maxCount) * 100;
+        return (
+          <div key={range.range} className="flex items-center gap-3">
+            <span className="w-28 text-sm font-mono text-muted-foreground">{range.range}</span>
+            <div className="flex-1 h-6 rounded-md bg-secondary overflow-hidden">
+              <div
+                className="h-full rounded-md bg-chart-1 transition-all"
+                style={{ width: range.count > 0 ? `${Math.max(barWidth, 3)}%` : "0%" }}
+              />
+            </div>
+            <span className="w-16 text-right text-sm font-mono">{range.count}건</span>
+            <span className="w-12 text-right text-xs text-muted-foreground">{range.pct}%</span>
           </div>
-          <span className="w-16 text-right text-sm font-mono">{range.count}건</span>
-          <span className="w-12 text-right text-xs text-muted-foreground">{range.pct}%</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

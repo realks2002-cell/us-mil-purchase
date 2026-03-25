@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { syncOpportunities } from "@/lib/sam-api/sync";
+import { checkDeadlineWarnings } from "@/lib/services/notifications";
 
 export const maxDuration = 60;
 
@@ -18,9 +19,18 @@ export async function GET(request: Request) {
   try {
     const result = await syncOpportunities();
     console.log("[Cron] 공고 수집 완료:", result);
+
+    let deadlineWarnings = 0;
+    try {
+      deadlineWarnings = await checkDeadlineWarnings();
+    } catch (e) {
+      console.error("[Cron] 마감 임박 알림 생성 실패 (무시):", e);
+    }
+
     return NextResponse.json({
       ok: true,
       ...result,
+      deadlineWarnings,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {

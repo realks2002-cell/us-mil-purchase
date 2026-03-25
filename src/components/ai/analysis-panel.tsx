@@ -53,6 +53,9 @@ export function AiAnalysisPanel({ apiUrl, body, buttonLabel = "AI 분석", title
         setContent(result);
       }
 
+      if (!result.trim()) {
+        setError("AI 응답이 비어있습니다. 잠시 후 다시 시도해주세요.");
+      }
       setLoading(false);
     } catch {
       setError("AI 분석 중 오류가 발생했습니다.");

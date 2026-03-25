@@ -1,8 +1,17 @@
 {
+  "regions": ["icn1"],
   "crons": [
     {
       "path": "/api/cron/sync-opportunities",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/sync-awards",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/sync-usaspending",
+      "schedule": "0 8 * * *"
     }
   ]
 }

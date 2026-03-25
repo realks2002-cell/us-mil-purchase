@@ -19,7 +19,7 @@ interface MonthlyData {
 export function MonthlyTrendChart({ data }: { data: MonthlyData[] }) {
   const formatted = data.map((d) => ({
     ...d,
-    label: d.month.slice(5), // "MM" only
+    label: `${d.month.slice(2, 4)}.${d.month.slice(5)}`, // "YY.MM"
     amountM: Math.round(d.amount / 1_000_000 * 10) / 10,
   }));
 

@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { searchOpportunities, isKoreaRelated } from "@/lib/sam-api/client";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not available in production" }, { status: 404 });
+  }
+
   try {
     const now = new Date();
     const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
