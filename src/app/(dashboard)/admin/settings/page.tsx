@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/header";
+import { getAdminSession } from "@/lib/get-session";
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+  await getAdminSession();
   return (
     <>
       <Header title="시스템 설정" description="시스템 환경설정 관리" />

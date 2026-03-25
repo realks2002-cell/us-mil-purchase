@@ -1,27 +1,27 @@
-import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 const publicPaths = ["/login", "/api/auth", "/api/cron", "/api/test-sam"];
 
-export default auth((req) => {
+export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const isPublic = publicPaths.some((p) => pathname.startsWith(p));
   if (isPublic) return NextResponse.next();
 
-  if (!req.auth) {
+  // NextAuth v5 세션 쿠키 확인 (DB 호출 없이)
+  const sessionToken =
+    req.cookies.get("__Secure-authjs.session-token") ??
+    req.cookies.get("authjs.session-token");
+
+  if (!sessionToken) {
     const loginUrl = new URL("/login", req.nextUrl.origin);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // 관리자 페이지 접근 제한
-  if (pathname.startsWith("/admin") && req.auth.user?.role !== "admin") {
-    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
-  }
-
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: [

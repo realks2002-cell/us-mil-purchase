@@ -1,21 +1,13 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { loginAction } from "./action";
 
 export default function LoginPage() {
-  return (
-    <Suspense>
-      <LoginForm />
-    </Suspense>
-  );
+  return <LoginForm />;
 }
 
 function LoginForm() {
-  const searchParams = useSearchParams();
-  const rawCallback = searchParams.get("callbackUrl") || "/";
-  const callbackUrl = rawCallback.startsWith("/") ? rawCallback : "/";
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -30,9 +22,8 @@ function LoginForm() {
     if (result?.error) {
       setLoading(false);
       setError(result.error);
-    } else {
-      window.location.href = callbackUrl;
     }
+    // 성공 시 서버 액션의 redirectTo가 자동 리다이렉트 처리
   }
 
   return (

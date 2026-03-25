@@ -4,8 +4,10 @@ import { SyncButtons } from "./sync-buttons";
 import { db } from "@/lib/db";
 import { syncLogs } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
+import { getAdminSession } from "@/lib/get-session";
 
 export default async function SyncMonitorPage() {
+  await getAdminSession();
   const logs = await db
     .select()
     .from(syncLogs)
