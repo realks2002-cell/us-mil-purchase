@@ -63,7 +63,7 @@ function LoginForm() {
                 type="email"
                 required
                 placeholder="name@company.com"
-                autoComplete="email"
+                autoComplete="off"
                 className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
@@ -77,7 +77,7 @@ function LoginForm() {
                 type="password"
                 required
                 placeholder="••••••••"
-                autoComplete="current-password"
+                autoComplete="off"
                 className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
