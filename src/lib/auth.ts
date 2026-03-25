@@ -21,13 +21,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const email = credentials.email as string;
         const password = credentials.password as string;
 
+        console.log("[Auth] 로그인 시도:", email);
+
         const user = await db.query.users.findFirst({
           where: eq(users.email, email),
         });
 
-        if (!user || !user.passwordHash || !user.isActive) return null;
+        if (!user) { console.log("[Auth] 사용자 없음:", email); return null; }
+        if (!user.passwordHash) { console.log("[Auth] 비밀번호 해시 없음"); return null; }
+        if (!user.isActive) { console.log("[Auth] 비활성 사용자"); return null; }
 
         const isValid = await compare(password, user.passwordHash);
+        console.log("[Auth] 비밀번호 검증:", isValid);
         if (!isValid) return null;
 
         try {
