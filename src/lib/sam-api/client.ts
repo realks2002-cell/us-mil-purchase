@@ -1,4 +1,4 @@
-const SAM_BASE_URL = "https://api.sam.gov/opportunities/v2";
+const SAM_BASE_URL = "https://api.sam.gov/prod/opportunities/v2";
 
 const RETRYABLE_STATUS = [429, 500, 502, 503, 504];
 const MAX_RETRIES = 3;
