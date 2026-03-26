@@ -1,7 +1,9 @@
 import { db } from "@/lib/db";
 import { usaspendingAwards } from "@/lib/db/schema";
-import { sql, count, gte, isNotNull, and } from "drizzle-orm";
+import { sql, count, gte, isNotNull, and, or, eq } from "drizzle-orm";
 import { safeParseFloat } from "@/lib/utils";
+
+const koreaFilter = or(eq(usaspendingAwards.performanceCountry, "KOR"), eq(usaspendingAwards.performanceCountry, "KR"));
 
 export async function getMonthlyOrderingPattern(months = 24) {
   const since = new Date();
@@ -14,7 +16,7 @@ export async function getMonthlyOrderingPattern(months = 24) {
       amount: sql<string>`coalesce(sum(${usaspendingAwards.totalObligation}), 0)`,
     })
     .from(usaspendingAwards)
-    .where(gte(usaspendingAwards.startDate, since))
+    .where(and(gte(usaspendingAwards.startDate, since), koreaFilter))
     .groupBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-MM')`)
     .orderBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-MM')`)
     .then((rows) =>
@@ -38,7 +40,7 @@ export async function getAgencyOrderingPattern(months = 12) {
       avgAmount: sql<string>`coalesce(avg(${usaspendingAwards.totalObligation}), 0)`,
     })
     .from(usaspendingAwards)
-    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.fundingAgency)))
+    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.fundingAgency), koreaFilter))
     .groupBy(usaspendingAwards.fundingAgency)
     .orderBy(sql`sum(${usaspendingAwards.totalObligation}) desc`)
     .limit(15)
@@ -65,7 +67,7 @@ export async function getNaicsOrderingPattern(months = 12) {
       avgOffers: sql<string>`coalesce(avg(${usaspendingAwards.numberOfOffers}), 0)`,
     })
     .from(usaspendingAwards)
-    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.naicsCode)))
+    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.naicsCode), koreaFilter))
     .groupBy(usaspendingAwards.naicsCode, usaspendingAwards.naicsDescription)
     .orderBy(sql`sum(${usaspendingAwards.totalObligation}) desc`)
     .limit(15)
@@ -91,7 +93,7 @@ export async function getQuarterlyPattern(months = 24) {
       amount: sql<string>`coalesce(sum(${usaspendingAwards.totalObligation}), 0)`,
     })
     .from(usaspendingAwards)
-    .where(gte(usaspendingAwards.startDate, since))
+    .where(and(gte(usaspendingAwards.startDate, since), koreaFilter))
     .groupBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-"Q"Q')`)
     .orderBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-"Q"Q')`)
     .then((rows) =>

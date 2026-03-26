@@ -1,6 +1,6 @@
 const SAM_BASE_URL = "https://api.sam.gov/prod/opportunities/v2";
 
-const RETRYABLE_STATUS = [429, 500, 502, 503, 504];
+const RETRYABLE_STATUS = [500, 502, 503, 504];
 const MAX_RETRIES = 3;
 
 function getApiKey(): string {
@@ -207,35 +207,20 @@ const KOREA_KEYWORDS = [
   "Daegu", "USAG", "K-16", "Pyeongtaek",
 ];
 
-// 2단계 수집: 1) placeOfPerformance=KOR, 2) 키워드 기반 (보충)
+// 전체 공고 수집 후 서버사이드 한국 필터링
+// SAM.gov API v2의 keyword/placeOfPerformanceCode 파라미터가 실제로 필터링하지 않으므로
+// 1회 호출 후 isKoreaRelated()로 필터링하는 것이 API 요청 효율적
 export async function searchKoreaOpportunities(
   params: Omit<SamSearchParams, "keyword" | "placeOfPerformanceCode"> = {}
 ): Promise<SamOpportunityResponse> {
-  // 1차: 수행지역 한국 필터 (가장 정확)
-  const byPlace = await searchOpportunities({
-    ...params,
-    placeOfPerformanceCode: "KOR",
-  });
-
-  // 2차: 키워드 기반 보충 수집 (수행지역 미지정 공고 포착)
-  const keyword = KOREA_KEYWORDS.join(" OR ");
-  const byKeyword = await searchOpportunities({ ...params, keyword });
-
-  // 중복 제거 후 병합
-  const seen = new Set(byPlace.opportunitiesData.map((o) => o.noticeId));
-  const merged = [...byPlace.opportunitiesData];
-  for (const opp of byKeyword.opportunitiesData) {
-    if (!seen.has(opp.noticeId)) {
-      merged.push(opp);
-      seen.add(opp.noticeId);
-    }
-  }
+  const response = await searchOpportunities({ ...params });
+  const koreaOpps = response.opportunitiesData.filter(isKoreaRelated);
 
   return {
-    totalRecords: merged.length,
+    totalRecords: response.totalRecords,
     limit: params.limit ?? 1000,
     offset: params.offset ?? 0,
-    opportunitiesData: merged,
+    opportunitiesData: koreaOpps,
   };
 }
 
@@ -243,30 +228,14 @@ export async function searchKoreaOpportunities(
 export async function searchKoreaAwards(
   params: Omit<SamSearchParams, "keyword" | "placeOfPerformanceCode" | "noticeType"> = {}
 ): Promise<SamOpportunityResponse> {
-  const baseParams = { ...params, noticeType: "a" };
-
-  const byPlace = await searchOpportunities({
-    ...baseParams,
-    placeOfPerformanceCode: "KOR",
-  });
-
-  const keyword = KOREA_KEYWORDS.join(" OR ");
-  const byKeyword = await searchOpportunities({ ...baseParams, keyword });
-
-  const seen = new Set(byPlace.opportunitiesData.map((o) => o.noticeId));
-  const merged = [...byPlace.opportunitiesData];
-  for (const opp of byKeyword.opportunitiesData) {
-    if (!seen.has(opp.noticeId)) {
-      merged.push(opp);
-      seen.add(opp.noticeId);
-    }
-  }
+  const response = await searchOpportunities({ ...params, noticeType: "a" });
+  const koreaAwards = response.opportunitiesData.filter(isKoreaRelated);
 
   return {
-    totalRecords: merged.length,
+    totalRecords: response.totalRecords,
     limit: params.limit ?? 1000,
     offset: params.offset ?? 0,
-    opportunitiesData: merged,
+    opportunitiesData: koreaAwards,
   };
 }
 

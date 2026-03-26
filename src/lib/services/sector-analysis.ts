@@ -1,7 +1,9 @@
 import { db } from "@/lib/db";
 import { usaspendingAwards } from "@/lib/db/schema";
-import { sql, count, gte, and, isNotNull, lt } from "drizzle-orm";
+import { sql, count, gte, and, isNotNull, lt, or, eq } from "drizzle-orm";
 import { safeParseFloat } from "@/lib/utils";
+
+const koreaFilter = or(eq(usaspendingAwards.performanceCountry, "KOR"), eq(usaspendingAwards.performanceCountry, "KR"));
 
 export async function getGrowingSectors() {
   const now = new Date();
@@ -17,7 +19,7 @@ export async function getGrowingSectors() {
         amount: sql<string>`coalesce(sum(${usaspendingAwards.totalObligation}), 0)`,
       })
       .from(usaspendingAwards)
-      .where(and(gte(usaspendingAwards.startDate, thisYear), isNotNull(usaspendingAwards.naicsCode)))
+      .where(and(gte(usaspendingAwards.startDate, thisYear), isNotNull(usaspendingAwards.naicsCode), koreaFilter))
       .groupBy(usaspendingAwards.naicsCode, usaspendingAwards.naicsDescription)
       .orderBy(sql`sum(${usaspendingAwards.totalObligation}) desc nulls last`)
       .limit(50),
@@ -32,6 +34,7 @@ export async function getGrowingSectors() {
         gte(usaspendingAwards.startDate, lastYear),
         lt(usaspendingAwards.startDate, thisYear),
         isNotNull(usaspendingAwards.naicsCode),
+        koreaFilter,
       ))
       .groupBy(usaspendingAwards.naicsCode)
       .orderBy(sql`sum(${usaspendingAwards.totalObligation}) desc nulls last`)
@@ -73,7 +76,7 @@ export async function getNaicsDistribution() {
       amount: sql<string>`coalesce(sum(${usaspendingAwards.totalObligation}), 0)`,
     })
     .from(usaspendingAwards)
-    .where(isNotNull(usaspendingAwards.naicsCode))
+    .where(and(isNotNull(usaspendingAwards.naicsCode), koreaFilter))
     .groupBy(usaspendingAwards.naicsCode, usaspendingAwards.naicsDescription)
     .orderBy(sql`sum(${usaspendingAwards.totalObligation}) desc nulls last`)
     .limit(20)
@@ -88,7 +91,7 @@ export async function getNaicsDistribution() {
 }
 
 export async function getUsaspendingTotalCount() {
-  const result = await db.select({ value: count() }).from(usaspendingAwards);
+  const result = await db.select({ value: count() }).from(usaspendingAwards).where(koreaFilter);
   return result[0].value;
 }
 
@@ -110,6 +113,7 @@ export async function getLowCompetitionSectors(months = 12) {
     .where(and(
       gte(usaspendingAwards.startDate, since),
       isNotNull(usaspendingAwards.naicsCode),
+      koreaFilter,
     ))
     .groupBy(usaspendingAwards.naicsCode, usaspendingAwards.naicsDescription)
     .having(sql`count(*) >= 1`)

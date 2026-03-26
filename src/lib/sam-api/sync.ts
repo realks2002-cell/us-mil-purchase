@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { opportunities, awards, syncLogs, type NewOpportunity, type NewAward } from "@/lib/db/schema";
-import { searchKoreaOpportunities, searchKoreaAwards, isKoreaRelated, getNoticeDescription, type SamOpportunity } from "./client";
+import { searchKoreaOpportunities, searchKoreaAwards, getNoticeDescription, type SamOpportunity } from "./client";
 import { and, eq, sql, inArray } from "drizzle-orm";
 import { matchFiltersAndNotify, checkStatusChanges } from "@/lib/services/notifications";
 import { getLastSuccessfulSyncDate, isAlreadyRunning } from "@/lib/services/sync-utils";
@@ -115,12 +115,13 @@ export async function syncOpportunities(): Promise<{
 
     console.log(`[Sync] Opportunities ${lastSync ? `증분(since: ${formatDate(since)})` : '초기(7일)'} 수집`);
 
-    let allOpps: SamOpportunity[] = [];
+    let koreaOpps: SamOpportunity[] = [];
     let offset = 0;
     const limit = 1000;
     let totalRecords = 0;
+    const seen = new Set<string>();
 
-    // 페이지네이션으로 전체 수집
+    // 페이지네이션으로 수집 (searchKoreaOpportunities 내부에서 한국 필터링 완료)
     do {
       const response = await searchKoreaOpportunities({
         postedFrom: formatDate(since),
@@ -129,11 +130,19 @@ export async function syncOpportunities(): Promise<{
         offset,
       });
       totalRecords = response.totalRecords;
-      allOpps = allOpps.concat(response.opportunitiesData);
+      for (const opp of response.opportunitiesData) {
+        if (!seen.has(opp.noticeId)) {
+          seen.add(opp.noticeId);
+          koreaOpps.push(opp);
+        }
+      }
       offset += limit;
-    } while (offset < totalRecords && offset < 5000); // 안전 상한 5,000건
+    } while (offset < totalRecords && offset < 5000);
 
-    const koreaOpps = allOpps.filter(isKoreaRelated);
+    if (totalRecords > 5000) {
+      console.warn(`[Sync] 전체 공고 ${totalRecords}건이 상한(5000)을 초과합니다. 일부 한국 관련 공고가 누락될 수 있습니다.`);
+    }
+    console.log(`[Sync] 전체 ${totalRecords}건 중 한국 관련 ${koreaOpps.length}건 필터링 완료`);
 
     // 한국 관련 공고의 상세 설명 가져오기 (5건씩 병렬)
     console.log(`[Sync] 한국 관련 공고 ${koreaOpps.length}건의 상세 설명 수집 시작`);
@@ -231,7 +240,7 @@ export async function syncOpportunities(): Promise<{
       .update(syncLogs)
       .set({
         status: "success",
-        recordsFetched: totalRecords,
+        recordsFetched: koreaOpps.length,
         recordsNew: newCount,
         recordsUpdated: updatedCount,
         duration,
@@ -239,7 +248,7 @@ export async function syncOpportunities(): Promise<{
       })
       .where(eq(syncLogs.id, log.id));
 
-    return { fetched: totalRecords, newCount, updatedCount };
+    return { fetched: koreaOpps.length, newCount, updatedCount };
   } catch (error) {
     const duration = Date.now() - startTime;
     await db
@@ -298,10 +307,11 @@ export async function syncAwards(): Promise<{
 
     console.log(`[Sync] Awards ${lastSync ? `증분(since: ${formatDate(since)})` : '초기(30일)'} 수집`);
 
-    let allOpps: SamOpportunity[] = [];
+    let koreaAwards: SamOpportunity[] = [];
     let offset = 0;
     const limit = 1000;
     let totalRecords = 0;
+    const seen = new Set<string>();
 
     do {
       const response = await searchKoreaAwards({
@@ -311,11 +321,20 @@ export async function syncAwards(): Promise<{
         offset,
       });
       totalRecords = response.totalRecords;
-      allOpps = allOpps.concat(response.opportunitiesData);
+      for (const opp of response.opportunitiesData) {
+        if (!seen.has(opp.noticeId)) {
+          seen.add(opp.noticeId);
+          koreaAwards.push(opp);
+        }
+      }
       offset += limit;
     } while (offset < totalRecords && offset < 5000);
 
-    const koreaAwards = allOpps.filter(isKoreaRelated);
+    if (totalRecords > 5000) {
+      console.warn(`[Sync] Awards 전체 ${totalRecords}건이 상한(5000)을 초과합니다.`);
+    }
+    console.log(`[Sync] Awards 전체 ${totalRecords}건 중 한국 관련 ${koreaAwards.length}건 필터링 완료`);
+
     let newCount = 0;
 
     const BATCH_SIZE = 50;
@@ -351,7 +370,7 @@ export async function syncAwards(): Promise<{
       .update(syncLogs)
       .set({
         status: "success",
-        recordsFetched: totalRecords,
+        recordsFetched: koreaAwards.length,
         recordsNew: newCount,
         recordsUpdated: 0,
         duration,
@@ -359,7 +378,7 @@ export async function syncAwards(): Promise<{
       })
       .where(eq(syncLogs.id, log.id));
 
-    return { fetched: totalRecords, newCount };
+    return { fetched: koreaAwards.length, newCount };
   } catch (error) {
     const duration = Date.now() - startTime;
     await db

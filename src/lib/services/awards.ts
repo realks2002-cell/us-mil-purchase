@@ -1,7 +1,9 @@
 import { db } from "@/lib/db";
 import { awards } from "@/lib/db/schema";
-import { desc, sql, count, eq, gte, and, isNotNull, inArray } from "drizzle-orm";
+import { desc, sql, count, eq, gte, and, isNotNull, inArray, or } from "drizzle-orm";
 import { safeParseFloat } from "@/lib/utils";
+
+const koreaFilter = or(eq(awards.performanceCountry, "KOR"), eq(awards.performanceCountry, "KR"));
 
 export async function getAwardStats(months = 12) {
   const since = new Date();
@@ -15,7 +17,7 @@ export async function getAwardStats(months = 12) {
       uniqueAwardees: sql<number>`count(distinct ${awards.awardeeName})`,
     })
     .from(awards)
-    .where(gte(awards.dateSigned, since));
+    .where(and(gte(awards.dateSigned, since), koreaFilter));
 
   return {
     totalCount: result.totalCount,
@@ -36,7 +38,7 @@ export async function getMonthlyTrend(months = 12) {
       amount: sql<string>`coalesce(sum(${awards.awardAmount}), 0)`,
     })
     .from(awards)
-    .where(gte(awards.dateSigned, since))
+    .where(and(gte(awards.dateSigned, since), koreaFilter))
     .groupBy(sql`to_char(${awards.dateSigned}, 'YYYY-MM')`)
     .orderBy(sql`to_char(${awards.dateSigned}, 'YYYY-MM')`);
 
@@ -58,7 +60,7 @@ export async function getNaicsBreakdown(months = 12) {
       amount: sql<string>`coalesce(sum(${awards.awardAmount}), 0)`,
     })
     .from(awards)
-    .where(and(gte(awards.dateSigned, since), isNotNull(awards.naicsCode)))
+    .where(and(gte(awards.dateSigned, since), isNotNull(awards.naicsCode), koreaFilter))
     .groupBy(awards.naicsCode)
     .orderBy(desc(sql`sum(${awards.awardAmount})`))
     .limit(10)
@@ -85,7 +87,7 @@ export async function getAmountDistribution(months = 12) {
       r6: sql<number>`count(*) filter (where ${awards.awardAmount} >= 100000000)`,
     })
     .from(awards)
-    .where(gte(awards.dateSigned, since));
+    .where(and(gte(awards.dateSigned, since), koreaFilter));
 
   const ranges = [
     { range: "< $100K", count: result.r1 },
@@ -116,7 +118,7 @@ export async function getTopAwardees(limit = 10, months = 12) {
       avgAmount: sql<string>`coalesce(avg(${awards.awardAmount}), 0)`,
     })
     .from(awards)
-    .where(and(gte(awards.dateSigned, since), isNotNull(awards.awardeeName)))
+    .where(and(gte(awards.dateSigned, since), isNotNull(awards.awardeeName), koreaFilter))
     .groupBy(awards.awardeeName, awards.awardeeUei)
     .orderBy(desc(sql`sum(${awards.awardAmount})`))
     .limit(limit)
@@ -145,7 +147,7 @@ export async function getCompetitorDetails(awardeeNames: string[]) {
         naicsCode: awards.naicsCode,
       })
       .from(awards)
-      .where(inArray(awards.awardeeName, awardeeNames))
+      .where(and(inArray(awards.awardeeName, awardeeNames), koreaFilter))
       .orderBy(desc(awards.dateSigned))
       .limit(awardeeNames.length * 5),
     db
@@ -155,7 +157,7 @@ export async function getCompetitorDetails(awardeeNames: string[]) {
         count: count(),
       })
       .from(awards)
-      .where(and(inArray(awards.awardeeName, awardeeNames), isNotNull(awards.naicsCode)))
+      .where(and(inArray(awards.awardeeName, awardeeNames), isNotNull(awards.naicsCode), koreaFilter))
       .groupBy(awards.awardeeName, awards.naicsCode)
       .orderBy(desc(count())),
   ]);
@@ -179,6 +181,7 @@ export async function getRecentAwards(limit = 5) {
   return db
     .select()
     .from(awards)
+    .where(koreaFilter)
     .orderBy(desc(awards.dateSigned))
     .limit(limit);
 }

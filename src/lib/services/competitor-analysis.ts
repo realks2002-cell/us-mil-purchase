@@ -1,7 +1,9 @@
 import { db } from "@/lib/db";
 import { usaspendingAwards, vendors, vendorNaicsStats } from "@/lib/db/schema";
-import { desc, eq, sql, count, and, gte, isNotNull } from "drizzle-orm";
+import { desc, eq, sql, count, and, gte, isNotNull, or } from "drizzle-orm";
 import { safeParseFloat } from "@/lib/utils";
+
+const koreaFilter = or(eq(usaspendingAwards.performanceCountry, "KOR"), eq(usaspendingAwards.performanceCountry, "KR"));
 
 export async function getVendorProfile(uei: string) {
   const vendor = await db.query.vendors.findFirst({
@@ -33,6 +35,7 @@ export async function getVendorWinHistory(uei: string, months = 24) {
     .where(and(
       eq(usaspendingAwards.awardeeUei, uei),
       gte(usaspendingAwards.startDate, since),
+      koreaFilter,
     ))
     .groupBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-MM')`)
     .orderBy(sql`to_char(${usaspendingAwards.startDate}, 'YYYY-MM')`);
@@ -61,7 +64,7 @@ export async function getVendorRecentAwards(uei: string, limit = 20) {
       awardingAgency: usaspendingAwards.awardingAgency,
     })
     .from(usaspendingAwards)
-    .where(eq(usaspendingAwards.awardeeUei, uei))
+    .where(and(eq(usaspendingAwards.awardeeUei, uei), koreaFilter))
     .orderBy(desc(usaspendingAwards.startDate))
     .limit(limit);
 }
@@ -80,6 +83,7 @@ export async function getCompetitionTypeAnalysis(months = 12) {
     .where(and(
       gte(usaspendingAwards.startDate, since),
       isNotNull(usaspendingAwards.competitionType),
+      koreaFilter,
     ))
     .groupBy(usaspendingAwards.competitionType)
     .orderBy(desc(count()));
@@ -129,6 +133,7 @@ export async function getMarketShareByNaics(naicsCode: string, months = 12) {
       eq(usaspendingAwards.naicsCode, naicsCode),
       gte(usaspendingAwards.startDate, since),
       isNotNull(usaspendingAwards.awardeeName),
+      koreaFilter,
     ))
     .groupBy(usaspendingAwards.awardeeName, usaspendingAwards.awardeeUei)
     .orderBy(desc(sql`sum(${usaspendingAwards.totalObligation})`))
@@ -159,7 +164,7 @@ export async function getHeadToHead(ueiA: string, ueiB: string, months = 24) {
         avgOffers: sql<string>`coalesce(avg(${usaspendingAwards.numberOfOffers}), 0)`,
       })
       .from(usaspendingAwards)
-      .where(and(eq(usaspendingAwards.awardeeUei, uei), gte(usaspendingAwards.startDate, since)));
+      .where(and(eq(usaspendingAwards.awardeeUei, uei), gte(usaspendingAwards.startDate, since), koreaFilter));
 
     const vendor = await db.query.vendors.findFirst({ where: eq(vendors.uei, uei) });
 
@@ -174,6 +179,7 @@ export async function getHeadToHead(ueiA: string, ueiB: string, months = 24) {
         eq(usaspendingAwards.awardeeUei, uei),
         gte(usaspendingAwards.startDate, since),
         isNotNull(usaspendingAwards.naicsCode),
+        koreaFilter,
       ))
       .groupBy(usaspendingAwards.naicsCode)
       .orderBy(desc(sql`sum(${usaspendingAwards.totalObligation})`))
@@ -232,7 +238,7 @@ export async function getMarketOverview(months = 12) {
       competitiveCount: sql<number>`count(*) filter (where ${usaspendingAwards.competitionType} in ('A', 'FULL_AND_OPEN', 'FULL AND OPEN COMPETITION', 'CDO', 'COMPETED UNDER SAP'))`,
     })
     .from(usaspendingAwards)
-    .where(gte(usaspendingAwards.startDate, since));
+    .where(and(gte(usaspendingAwards.startDate, since), koreaFilter));
 
   return {
     totalContracts: stats.totalContracts,
@@ -261,7 +267,7 @@ export async function getTopVendors(limit = 10, months = 12) {
       soleSource: sql<number>`count(*) filter (where ${usaspendingAwards.competitionType} in ('SSS', 'SOLE_SOURCE', 'SOLE SOURCE', 'NOT COMPETED', 'NOT AVAILABLE FOR COMPETITION'))`,
     })
     .from(usaspendingAwards)
-    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.awardeeName)))
+    .where(and(gte(usaspendingAwards.startDate, since), isNotNull(usaspendingAwards.awardeeName), koreaFilter))
     .groupBy(usaspendingAwards.awardeeName, usaspendingAwards.awardeeUei)
     .orderBy(desc(sql`sum(${usaspendingAwards.totalObligation})`))
     .limit(limit)
