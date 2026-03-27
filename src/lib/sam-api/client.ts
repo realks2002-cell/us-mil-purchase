@@ -6,6 +6,7 @@ const MAX_RETRIES = 3;
 function getApiKey(): string {
   const key = process.env.SAM_GOV_API_KEY;
   if (!key) throw new Error("SAM_GOV_API_KEY 환경변수가 설정되지 않았습니다.");
+  console.log(`[SAM] API Key 확인: ${key.slice(0, 8)}...${key.slice(-4)} (${key.length}자)`);
   return key;
 }
 
@@ -86,6 +87,8 @@ async function samFetch<T>(url: string, params: Record<string, string>): Promise
   searchParams.set("api_key", getApiKey());
 
   const fullUrl = `${url}?${searchParams.toString()}`;
+  const maskedUrl = fullUrl.replace(/api_key=[^&]+/, "api_key=***");
+  console.log(`[SAM] 요청: ${maskedUrl}`);
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     const controller = new AbortController();
@@ -114,6 +117,8 @@ async function samFetch<T>(url: string, params: Record<string, string>): Promise
 
       if (!res.ok) {
         const text = await res.text().catch(() => "");
+        console.error(`[SAM] 에러 응답 (${res.status}): ${text.slice(0, 500)}`);
+        console.error(`[SAM] 요청 URL: ${maskedUrl}`);
         throw new Error(`SAM.gov API 에러 (${res.status}): ${text.slice(0, 200)}`);
       }
 
